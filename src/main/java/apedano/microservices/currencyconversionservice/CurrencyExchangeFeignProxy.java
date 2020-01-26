@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @author Alessandro
  */
 //@FeignClient(name="currency-exchange-service", url="localhost:8000")
-@FeignClient(name="currency-exchange-service")
+//@FeignClient(name="currency-exchange-service")
+@FeignClient(name="netflix-zuul-api-gateway-server") //to use the api
 @RibbonClient(name="currency-exchange-service")
 public interface CurrencyExchangeFeignProxy {
     
     /*
     This is the mapping from the CurrencyExchangeController (that one we want to use)
     */
-    @GetMapping("/currency-exchange/from/{from}/to/{to}")
+    //@GetMapping("/currency-exchange/from/{from}/to/{to}")
+    @GetMapping("/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
     public CurrencyConversionBean retrieveExchangeValue(@PathVariable String from, @PathVariable String to);
-    
 }
